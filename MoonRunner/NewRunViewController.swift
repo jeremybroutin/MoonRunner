@@ -24,6 +24,7 @@ import UIKit
 import CoreData
 import CoreLocation
 import HealthKit
+import MapKit
 
 let DetailSegueName = "RunDetails"
 
@@ -49,6 +50,7 @@ class NewRunViewController: UIViewController {
     lazy var timer = Timer()
     
     @IBOutlet weak var promptLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
@@ -63,6 +65,7 @@ class NewRunViewController: UIViewController {
         startButton.isHidden = false
         promptLabel.isHidden = false
         
+        mapView.isHidden = true
         timeLabel.isHidden = true
         distanceLabel.isHidden = true
         paceLabel.isHidden = true
@@ -81,6 +84,7 @@ class NewRunViewController: UIViewController {
         timeLabel.isHidden = false
         distanceLabel.isHidden = false
         paceLabel.isHidden = false
+        mapView.isHidden = false
         stopButton.isHidden = false
         
         seconds = 0.0
@@ -172,6 +176,21 @@ extension NewRunViewController: CLLocationManagerDelegate {
                 }
             }
             self.locations.append(location)
+        }
+    }
+}
+
+// MARK: - MKMapViewDelegate
+
+extension NewRunViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let polyline = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(polyline: polyline)
+            renderer.strokeColor = UIColor.blue
+            renderer.lineWidth = 3
+            return renderer
+        } else {
+            return MKOverlayRenderer(overlay: overlay)
         }
     }
 }
