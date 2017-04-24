@@ -216,13 +216,13 @@
         <!--Badges-->
         <scene sceneID="Xck-tM-9jZ">
             <objects>
-                <tableViewController id="eTK-aJ-0pg" sceneMemberID="viewController">
+                <tableViewController id="eTK-aJ-0pg" customClass="BadgesTableViewController" customModule="MoonRunner" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="hWk-8w-wYF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BadgeCell" id="WsU-43-HmB">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BadgeCell" id="WsU-43-HmB" customClass="BadgeCell" customModule="MoonRunner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WsU-43-HmB" id="th6-io-bhC">
@@ -285,6 +285,11 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
+                                    <outlet property="badgeImageView" destination="MTx-by-wSm" id="tDi-5W-iaE"/>
+                                    <outlet property="descLabel" destination="noJ-Nb-Sf5" id="TNi-oQ-vZ5"/>
+                                    <outlet property="goldImageView" destination="RV8-Cf-rVr" id="Acb-Dn-aQc"/>
+                                    <outlet property="nameLabel" destination="PAa-3S-6EM" id="ifx-nc-tsS"/>
+                                    <outlet property="silverImageView" destination="v8r-uW-A1V" id="R8W-ZU-sB5"/>
                                     <segue destination="Jdl-eF-pta" kind="show" id="rR7-2x-QDY"/>
                                 </connections>
                             </tableViewCell>
