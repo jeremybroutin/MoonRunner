@@ -25,6 +25,7 @@
 		E3A1F0441EAD866A000B9660 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A1F0431EAD866A000B9660 /* Badge.swift */; };
 		E3A1F0461EAD8F0E000B9660 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A1F0451EAD8F0E000B9660 /* BadgeCell.swift */; };
 		E3A1F0481EAD8F31000B9660 /* BadgesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A1F0471EAD8F31000B9660 /* BadgesTableViewController.swift */; };
+		E3A1F04A1EADA215000B9660 /* BadgeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A1F0491EADA215000B9660 /* BadgeDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		E3A1F0431EAD866A000B9660 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		E3A1F0451EAD8F0E000B9660 /* BadgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
 		E3A1F0471EAD8F31000B9660 /* BadgesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgesTableViewController.swift; sourceTree = "<group>"; };
+		E3A1F0491EADA215000B9660 /* BadgeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				870F82601A24E70F00776E2F /* Supporting Files */,
 				E3A1F0451EAD8F0E000B9660 /* BadgeCell.swift */,
 				E3A1F0471EAD8F31000B9660 /* BadgesTableViewController.swift */,
+				E3A1F0491EADA215000B9660 /* BadgeDetailViewController.swift */,
 			);
 			path = MoonRunner;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				870F826A1A24E70F00776E2F /* DetailViewController.swift in Sources */,
 				78CE0D651AFBEA53009BBE75 /* Location.swift in Sources */,
 				78CE0D671AFBEA54009BBE75 /* Run.swift in Sources */,
+				E3A1F04A1EADA215000B9660 /* BadgeDetailViewController.swift in Sources */,
 				E3A1F0441EAD866A000B9660 /* Badge.swift in Sources */,
 				8772AB5B1A26347A00613309 /* HomeViewController.swift in Sources */,
 				E3A1F0461EAD8F0E000B9660 /* BadgeCell.swift in Sources */,

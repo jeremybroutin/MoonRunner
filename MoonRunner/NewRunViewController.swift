@@ -173,7 +173,7 @@ extension NewRunViewController: CLLocationManagerDelegate {
         for location in locations {
             let howRecent = location.timestamp.timeIntervalSinceNow
             
-            if abs(howRecent) < 50 && location.horizontalAccuracy < 20 {
+            if abs(howRecent) < 10 && location.horizontalAccuracy < 20 {
                 
                 //update distance
                 if self.locations.count > 0 {
