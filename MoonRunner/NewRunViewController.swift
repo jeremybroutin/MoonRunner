@@ -168,17 +168,35 @@ extension NewRunViewController: UIActionSheetDelegate {
 // MARK: - CoreLocation delegate
 
 extension NewRunViewController: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for location in locations {
-            if location.horizontalAccuracy < 20 {
+            let howRecent = location.timestamp.timeIntervalSinceNow
+            
+            if abs(howRecent) < 50 && location.horizontalAccuracy < 20 {
+                
+                //update distance
                 if self.locations.count > 0 {
                     distance += location.distance(from: self.locations.last!)
+                    
+                    var coords = [CLLocationCoordinate2D]()
+                    coords.append(self.locations.last!.coordinate)
+                    coords.append(location.coordinate)
+                    
+                    let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500, 500)
+                    mapView.setRegion(region, animated: true)
+                    
+                    mapView.add(MKPolyline(coordinates: &coords, count: coords.count))
                 }
+                
+                //save location
+                self.locations.append(location)
             }
-            self.locations.append(location)
         }
     }
 }
+
+
 
 // MARK: - MKMapViewDelegate
 

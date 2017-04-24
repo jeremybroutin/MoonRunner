@@ -206,6 +206,7 @@
 				TargetAttributes = {
 					870F825C1A24E70F00776E2F = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 4QSA42CC68;
 						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -404,6 +405,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4QSA42CC68;
 				INFOPLIST_FILE = MoonRunner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zedenem.$(PRODUCT_NAME:rfc1034identifier)";
@@ -416,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4QSA42CC68;
 				INFOPLIST_FILE = MoonRunner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zedenem.$(PRODUCT_NAME:rfc1034identifier)";
