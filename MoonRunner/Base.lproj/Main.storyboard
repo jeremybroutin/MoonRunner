@@ -305,10 +305,10 @@
             </objects>
             <point key="canvasLocation" x="1311" y="830"/>
         </scene>
-        <!--View Controller-->
+        <!--Badge Details View Controller-->
         <scene sceneID="45u-kP-QUQ">
             <objects>
-                <viewController id="Jdl-eF-pta" sceneMemberID="viewController">
+                <viewController id="Jdl-eF-pta" customClass="BadgeDetailsViewController" customModule="MoonRunner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1IA-fR-cof"/>
                         <viewControllerLayoutGuide type="bottom" id="C1u-Q8-mRD"/>
@@ -414,6 +414,9 @@
                                 <state key="normal" backgroundImage="info">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="infoButtonPressedWithSender:" destination="Jdl-eF-pta" eventType="touchUpInside" id="IYc-Aq-wmP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -427,6 +430,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="usU-4O-fC2"/>
+                    <connections>
+                        <outlet property="badgeImageView" destination="Agn-wS-7Lt" id="qsV-ql-acn"/>
+                        <outlet property="bestLabel" destination="4zi-v9-oma" id="kDL-6h-hko"/>
+                        <outlet property="distanceLabel" destination="IgQ-eA-AZn" id="TTb-C6-Q7V"/>
+                        <outlet property="earnedLabel" destination="TnQ-pr-IZF" id="dVq-Xm-oqx"/>
+                        <outlet property="goldImageView" destination="dHd-B1-nv6" id="WoH-fh-Z1L"/>
+                        <outlet property="goldLabel" destination="pBB-Ea-xtB" id="Tsz-9j-ldx"/>
+                        <outlet property="nameLabel" destination="wT1-aK-yiZ" id="iP2-uY-8Hh"/>
+                        <outlet property="silverImageView" destination="6zB-rc-Aum" id="dsC-Cp-OxO"/>
+                        <outlet property="silverLabel" destination="aBb-7h-YkY" id="XQg-Rr-57K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JjS-lz-Mu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

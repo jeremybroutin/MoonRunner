@@ -74,4 +74,11 @@ class BadgeDetailsViewController: UIViewController {
             bestLabel.text = "Best: \(paceQuantity.description), \(formatter.string(from: bestRun.timestamp))"
         }
     }
+    
+    @IBAction func infoButtonPressed(sender: AnyObject) {
+        UIAlertView(title: badgeEarnStatus.badge.name!,
+                    message: badgeEarnStatus.badge.information!,
+                    delegate: nil,
+                    cancelButtonTitle: "OK").show()
+    }
 }

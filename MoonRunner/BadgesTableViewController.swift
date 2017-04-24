@@ -21,6 +21,14 @@ class BadgesTableViewController: UITableViewController {
     }()
     let transform = CGAffineTransform(rotationAngle: CGFloat(.pi/8.0))
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.isKind(of: BadgeDetailsViewController.self) {
+            let badgeDetailsViewController = segue.destination as! BadgeDetailsViewController
+            let badgeEarnStatus = badgeEarnStatusesArray[(tableView.indexPathForSelectedRow?.row)!]
+            badgeDetailsViewController.badgeEarnStatus = badgeEarnStatus
+        }
+    }
+    
 }
 
 // MARK: - UITableViewDataSource
