@@ -25,15 +25,20 @@ import CoreData
 import CoreLocation
 import HealthKit
 import MapKit
+import AudioToolbox
 
 let DetailSegueName = "RunDetails"
 
 class NewRunViewController: UIViewController {
+    
+    // MARK: - Properties
+    
     var managedObjectContext: NSManagedObjectContext?
     
     var run: Run!
     var seconds = 0.0
     var distance = 0.0
+    var upcomingBadge: Badge?
     
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
@@ -49,6 +54,8 @@ class NewRunViewController: UIViewController {
     lazy var locations = [CLLocation]()
     lazy var timer = Timer()
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var promptLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var timeLabel: UILabel!
@@ -56,6 +63,10 @@ class NewRunViewController: UIViewController {
     @IBOutlet weak var paceLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var nextBadgeLabel: UILabel!
+    @IBOutlet weak var nextBadgeImageView: UIImageView!
+    
+    // MARK: - View life cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -70,12 +81,16 @@ class NewRunViewController: UIViewController {
         distanceLabel.isHidden = true
         paceLabel.isHidden = true
         stopButton.isHidden = true
+        nextBadgeLabel.isHidden = true
+        nextBadgeImageView.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer.invalidate()
     }
+    
+    // MARK: - IBActions
     
     @IBAction func startPressed(_ sender: AnyObject) {
         startButton.isHidden = true
@@ -86,6 +101,8 @@ class NewRunViewController: UIViewController {
         paceLabel.isHidden = false
         mapView.isHidden = false
         stopButton.isHidden = false
+        nextBadgeLabel.isHidden = false
+        nextBadgeImageView.isHidden = false
         
         seconds = 0.0
         distance = 0.0
@@ -101,11 +118,15 @@ class NewRunViewController: UIViewController {
         actionSheet.show(in: view)
     }
     
+    // MARK: - Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailViewController = segue.destination as? DetailViewController {
             detailViewController.run = run
         }
     }
+    
+    // MARK: - Helper functions
     
     func eachSecond(timer: Timer) {
         seconds += 1
@@ -117,6 +138,13 @@ class NewRunViewController: UIViewController {
         let paceUnit = HKUnit.second().unitDivided(by: HKUnit.meter())
         let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: seconds / distance)
         paceLabel.text = "Pace :" + paceQuantity.description
+        
+        checkNextBadge()
+        if let upcomingBadge = upcomingBadge {
+            let nextBadgeDistanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: upcomingBadge.distance! - distance)
+            nextBadgeLabel.text = "\(nextBadgeDistanceQuantity.description) until \(upcomingBadge.name!)"
+            nextBadgeImageView.image = UIImage(named: upcomingBadge.imageName!)
+        }
     }
     
     func startLocationUpdates() {
@@ -146,6 +174,26 @@ class NewRunViewController: UIViewController {
         } catch let error {
             print("Couldn't save the run, error: \(error)")
         }
+    }
+    
+    func playSuccessSound() {
+        let soundURL = Bundle.main.url(forResource: "success", withExtension: "wav")
+        var soundID : SystemSoundID = 0
+        AudioServicesCreateSystemSoundID(soundURL! as CFURL, &soundID)
+        AudioServicesPlaySystemSound(soundID)
+        
+        //also vibrate
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate));
+    }
+    
+    func checkNextBadge() {
+        let nextBadge = BadgeController.sharedController.nextBadgeForDistance(distance: distance)
+        if let upcomingBadge = upcomingBadge {
+            if upcomingBadge.name! != nextBadge.name! {
+                playSuccessSound()
+            }
+        }
+        upcomingBadge = nextBadge
     }
 }
 

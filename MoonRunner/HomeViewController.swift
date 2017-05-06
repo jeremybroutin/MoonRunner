@@ -46,4 +46,11 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func showPastRuns(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Coming soon!", message: "We are working on showing your saved runs, please come back later!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
 }

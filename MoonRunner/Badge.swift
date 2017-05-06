@@ -57,7 +57,7 @@ class BadgeController {
             for run in runs {
                 if run.distance > badge.distance! {
                     
-                    // This is when the badge was first earned
+                    // First time badge is earned
                     if badgeEarnStatus.earnRun == nil {
                         badgeEarnStatus.earnRun = run
                     }
@@ -65,17 +65,17 @@ class BadgeController {
                     let earnRunSpeed = badgeEarnStatus.earnRun!.distance / badgeEarnStatus.earnRun!.duration
                     let runSpeed = run.distance / run.duration
                     
-                    // Does it deserve silver?
+                    // Check for silver performance
                     if badgeEarnStatus.silverRun == nil && runSpeed > earnRunSpeed * silverMultiplier {
                         badgeEarnStatus.silverRun = run
                     }
                     
-                    // Does it deserve gold?
+                    // Check for gold performance
                     if badgeEarnStatus.goldRun == nil && runSpeed > earnRunSpeed * goldMultiplier {
                         badgeEarnStatus.goldRun = run
                     }
                     
-                    // Is it the best for this distance?
+                    // Check for best run
                     if let bestRun = badgeEarnStatus.bestRun {
                         let bestRunSpeed = bestRun.distance / bestRun.duration
                         if runSpeed > bestRunSpeed {
@@ -92,6 +92,28 @@ class BadgeController {
         }
         
         return badgeEarnStatuses
+    }
+    
+    func bestBadgeForDistance(distance: Double) -> Badge {
+        var bestBadge = badges.first as Badge!
+        for badge in badges {
+            if distance < badge.distance! {
+                break
+            }
+            bestBadge = badge
+        }
+        return bestBadge!
+    }
+    
+    func nextBadgeForDistance(distance: Double) -> Badge {
+        var nextBadge = badges.first as Badge!
+        for badge in badges {
+            nextBadge = badge
+            if distance < badge.distance! {
+                break
+            }
+        }
+        return nextBadge!
     }
 }
 

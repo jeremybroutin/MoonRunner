@@ -11,6 +11,8 @@ import HealthKit
 
 class BadgesTableViewController: UITableViewController {
     
+    // MARK: - Properties
+    
     var badgeEarnStatusesArray: [BadgeEarnStatus]!
     let redColor = UIColor(red: 1, green: 20/255, blue: 44/255, alpha: 1)
     let greenColor = UIColor(red: 0, green: 146/255, blue: 78/255, alpha: 1)
@@ -20,6 +22,8 @@ class BadgesTableViewController: UITableViewController {
         return _dateFormatter
     }()
     let transform = CGAffineTransform(rotationAngle: CGFloat(.pi/8.0))
+    
+    // MARK: - Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination.isKind(of: BadgeDetailsViewController.self) {
@@ -58,7 +62,7 @@ extension BadgesTableViewController {
         }
         else {
             cell.nameLabel.textColor = redColor
-            cell.nameLabel.text = "?????"
+            cell.nameLabel.text = "Badge locked"
             cell.descLabel.textColor = redColor
             let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: badgeEarnStatus.badge.distance!)
             cell.descLabel.text = "Run \(distanceQuantity.description) to earn"
